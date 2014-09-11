@@ -41,6 +41,8 @@
 -(CardMatchingGame *) gameModel {
     if (!_gameModel){
         _gameModel = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+        
+        [self touchSegmentedControl:self.matchMode];    // For fisrt/init value by sending (value change)method
     }
     return _gameModel;
 }
@@ -59,26 +61,28 @@
 
 // [Value Change]
 - (IBAction)touchSegmentedControl:(id)sender {
-}
-
-- (IBAction)touchResetButton:(UIButton *)sender {
-    if (_gameModel){
-        _gameModel = nil;
-        _gameModel = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-    }
-    [self updateUI];
-    self.matchMode.enabled = YES;
-}
-
-// Let model handle what to do.
-- (IBAction)touchCardButton:(UIButton *)sender {
-    
     if (self.matchMode.selectedSegmentIndex == 0){
         self.gameModel.otherCardsCount = 1;
     }
     else if (self.matchMode.selectedSegmentIndex == 1){
         self.gameModel.otherCardsCount = 2;
     }
+}
+
+- (IBAction)touchResetButton:(UIButton *)sender {
+    /*if (_gameModel){
+        _gameModel = nil;
+        _gameModel = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    }*/
+    self.gameModel = nil;
+    [self updateUI];
+    
+    self.matchMode.enabled = YES;
+}
+
+// Let model handle what to do.
+- (IBAction)touchCardButton:(UIButton *)sender {
+    
     self.matchMode.enabled = NO;
     
     // To know what's index in Card array of touched button.
