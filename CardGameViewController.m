@@ -88,7 +88,7 @@
     // To know what's index in Card array of touched button.
     int chosenBtnIndex = [self.cardButtons indexOfObject:sender];   // or say cardIndex
     //[self.gameModel chooseCardAtIndex:chosenBtnIndex];
-    [self.gameModel chooseCardAtIndexWithMatchMethod:chosenBtnIndex matchCardsCount:self.gameModel.otherCardsCount];
+    [self.gameModel chooseCardAtIndexWithMatchMethod:chosenBtnIndex];
     [self updateUI];    // To sync the model with UI, which is what controller does.
     
     /*

@@ -57,6 +57,14 @@
     return nil;
 }
 
+// Lazy Initialization
+- (NSUInteger)otherCardsCount{
+    if (_otherCardsCount < 1){
+        _otherCardsCount = 1;
+    }
+    return _otherCardsCount;
+}
+
 - (Card *)cardAtIndex:(NSUInteger)index{
     // To prevent if <index> greater then <count>
     return (index < [self.cards count]) ? self.cards[index] : nil;
@@ -108,12 +116,7 @@ static const int COST_TO_MATCH=1;
     }
 }
 
-- (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index matchCardsCount:(NSUInteger)otherCardsCount{
-    
-    // If NOT set/initialize, set to 1, tow-cards matching, for default.
-    if (otherCardsCount < 1){
-        otherCardsCount = 1;
-    }
+- (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index{
     
     self.resultDescription = nil;
     
@@ -125,13 +128,13 @@ static const int COST_TO_MATCH=1;
             self.resultDescription = @"Flip OFF card";
         }
         else{
-            NSMutableArray  *otherCards;
-            otherCards = [[NSMutableArray alloc]init];
+            NSMutableArray  *otherCards = [NSMutableArray array];
             for(Card *otherCard in self.cards){
                 if (otherCard.isChosen && !otherCard.isMatched){
                     [otherCards addObject:(otherCard)];
                     
-                    if (otherCards.count == otherCardsCount){   // matching until choose N cards.
+                    //--- other thinking, to move this if() out of for() also works.
+                    if ([otherCards count] == self.otherCardsCount){   // matching until choose N cards.
                         int matchScore = [card matchCards:otherCards];
                         
                         if (matchScore){

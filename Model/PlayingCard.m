@@ -29,12 +29,20 @@
     }
     */
     
-    for (PlayingCard *otherCard in otherCards){
-        if (otherCard.rank == self.rank){
-            score += 4;
+    int otherCardsCount = [otherCards count];
+    if (otherCardsCount){
+        for (PlayingCard *otherCard in otherCards){
+            if (otherCard.rank == self.rank){
+                score += 4;
+            }
+            else if ([otherCard.suit isEqual:self.suit]){
+                score += 1;
+            }
         }
-        else if ([otherCard.suit isEqual:self.suit]){
-            score += 1;
+        
+        //---To match within "TWO" (Now hot-code) OTHER CARDS
+        if (otherCardsCount > 1){
+            score += [[otherCards firstObject] matchCards:[otherCards subarrayWithRange:NSMakeRange(1, otherCardsCount-1)]];
         }
     }
     

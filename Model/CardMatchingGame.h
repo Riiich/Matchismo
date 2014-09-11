@@ -25,7 +25,7 @@
 // readonly: no PUBLIC setter, make it READONLY publicly.
 @property (nonatomic, readonly)NSInteger score;
 
-- (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index matchCardsCount:(NSUInteger)otherCardsCount;
+- (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index;
 @property (nonatomic)NSUInteger otherCardsCount;
 @property (strong, nonatomic, readonly)NSString *resultDescription;
 
