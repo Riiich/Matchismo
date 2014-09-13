@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSMutableArray *cards; // of card
 
 @property (strong, nonatomic, readwrite) NSString *resultDescription;
+@property (nonatomic, strong)NSArray *lastChosenCards;
+@property (nonatomic, readwrite)NSInteger lastScore;
 @end
 
 @implementation CardMatchingGame
@@ -72,7 +74,7 @@
 
 static const int MISMATCH_PENALTY=2;
 static const int MATCH_BONUS=4;
-static const int COST_TO_MATCH=1;
+static const int COST_TO_CHOOSE=1;
 
 // Here is where "matching: happen !!! Heart of this App
 - (void)chooseCardAtIndex:(NSInteger)index{
@@ -107,7 +109,7 @@ static const int COST_TO_MATCH=1;
                     break;  // Only matching 2 cards for NOW. If found the chosen card matched, break the FOR loop.
                 }
             }
-            self.score -= COST_TO_MATCH;
+            self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }
@@ -125,38 +127,33 @@ static const int COST_TO_MATCH=1;
     if (!card.isMatched){
         if (card.isChosen){
             card.chosen = NO;
-            self.resultDescription = @"Flip OFF card";
         }
         else{
             NSMutableArray  *otherCards = [NSMutableArray array];
+            
+            self.lastScore = 0;
+            self.lastChosenCards = @[card]; // Show only self to result msg
+            
             for(Card *otherCard in self.cards){
                 if (otherCard.isChosen && !otherCard.isMatched){
                     [otherCards addObject:(otherCard)];
                     
-                    //--- other thinking, to move this if() out of for() also works.
-                    if ([otherCards count] == self.otherCardsCount){   // matching until choose N cards.
-                        int matchScore = [card matchCards:otherCards];
+                    if ([otherCards count] == self.otherCardsCount){                    // matching until choose N cards.
                         
+                        self.lastChosenCards = [otherCards arrayByAddingObject:card];   // otherCards and (self)card.
+                        
+                        int matchScore = [card matchCards:otherCards];
                         if (matchScore){
-                            self.score += matchScore;//*MATCH_BONUS;
-                            
-                            NSString *matchedCardsString = [NSString stringWithFormat:@"%@", card.contents];
+                            self.lastScore = matchScore*MATCH_BONUS;
                             
                             // If any matching, (take out)/disable ALL cards by mark MATCHED.
                             card.matched = YES;
                             for (Card *matchedCard in otherCards){
                                 matchedCard.matched = YES;
-                                
-                                // For update result string
-                                NSString *temp=matchedCard.contents;
-                                matchedCardsString = [matchedCardsString stringByAppendingString:@" "];
-                                matchedCardsString = [matchedCardsString stringByAppendingString:temp];
                             }
-                            
-                            self.resultDescription = [NSString stringWithFormat:@"Matched %@ for %d points.", matchedCardsString, matchScore];
                         }
                         else{
-                            //self.score -= matchScore*MISMATCH_PENALTY;
+                            self.lastScore = 0 - MISMATCH_PENALTY;
                             
                             //If no matching, only otherCards flip OFF.
                             for (Card *matchedCard in otherCards){
@@ -169,10 +166,8 @@ static const int COST_TO_MATCH=1;
                     }
                 }
             }
+            self.score += self.lastScore - COST_TO_CHOOSE;
             card.chosen = YES;
-            
-            if (!self.resultDescription)
-                self.resultDescription = [NSString stringWithFormat:@"%@", card.contents];
         }
     }
     else{

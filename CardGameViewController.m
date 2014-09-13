@@ -109,24 +109,44 @@
     */
 }
 
-// Go thru all buttons, get that btn, look into the model spontaneously.
 - (void)updateUI{
     
+    // Update all button status. Go thru all buttons, get that btn, look into the model spontaneously.
     for (UIButton *cardButton in self.cardButtons){
         int cardIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.gameModel cardAtIndex:cardIndex];
 
         // Now we have card and button, so we can make sure if button reflects the card.
-        
-        //NSLog(@"updateUI(), %d=%@, Chosen/Matched=%d/%d", cardIndex, card.contents, card.isChosen, card.isMatched);
-        
         [cardButton setTitle:[self titileForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
     
+    // Update score label
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.gameModel.score];
-    self.resultLabel.text = self.gameModel.resultDescription;
+    
+    // Update last result description label
+    if (self.gameModel){
+        
+        // To get lastChosenCards content and make with format
+        NSString *descriptor=@"";
+        if ([self.gameModel.lastChosenCards count]){
+            NSMutableArray *cardsContent = [NSMutableArray array];
+            for(Card *card in self.gameModel.lastChosenCards){
+                [cardsContent addObject:card.contents];
+            }
+            descriptor = [cardsContent componentsJoinedByString:@" "];
+        }
+        
+        // To format msg with score(if any).
+        if (self.gameModel.lastScore > 0){
+            descriptor = [NSString stringWithFormat:@"Matched %@ for %d points!", descriptor, self.gameModel.lastScore];
+        }
+        else if(self.gameModel.lastScore < 0){
+            descriptor = [NSString stringWithFormat:@"%@ didn't match! %d points!", descriptor, self.gameModel.lastScore];
+        }
+        self.resultLabel.text = descriptor;
+    }
 }
 
 -(NSString *)titileForCard:(Card *)card{
