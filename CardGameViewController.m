@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchMode;
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+
+@property (strong, nonatomic) NSMutableArray *resultHistory;
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @end
 
 @implementation CardGameViewController
@@ -47,6 +50,14 @@
     return _gameModel;
 }
 
+// Lazy Initialization
+- (NSMutableArray *) resultHistory{
+    if (!_resultHistory){
+        _resultHistory = [NSMutableArray array];
+    }
+    return _resultHistory;
+}
+
 -(Deck *)createDeck{
     return [[PlayingCardDeck alloc]init];
 }
@@ -69,6 +80,18 @@
     }
 }
 
+// [value change]
+- (IBAction)changeSlider:(id)sender {
+    NSInteger sliderValue = lround(self.historySlider.value);   // Find integer value
+    [self.historySlider setValue:sliderValue animated:NO];      // Move/Set UI slider to value-position
+    
+    // I put most recent msg in most left (position 0) on slider.
+    if ([self.resultHistory count]){
+        self.resultLabel.alpha = (sliderValue == 0)? 1.0:0.6;
+        self.resultLabel.text = self.resultHistory[[self.resultHistory count]-1-sliderValue];
+    }
+}
+
 - (IBAction)touchResetButton:(UIButton *)sender {
     /*if (_gameModel){
         _gameModel = nil;
@@ -78,6 +101,7 @@
     [self updateUI];
     
     self.matchMode.enabled = YES;
+    self.resultHistory = nil;
 }
 
 // Let model handle what to do.
@@ -145,7 +169,20 @@
         else if(self.gameModel.lastScore < 0){
             descriptor = [NSString stringWithFormat:@"%@ didn't match! %d points!", descriptor, self.gameModel.lastScore];
         }
+        
         self.resultLabel.text = descriptor;
+        self.resultLabel.alpha = 1.0;
+        
+        // To handle history msg array in slider
+        if ([self.resultHistory count] > 20){
+            //[self.resultHistory removeAllObjects];
+        }
+        [self.resultHistory addObject:descriptor];
+        [self.historySlider setMaximumValue:[self.resultHistory count]-1];
+    }
+    
+    for (NSString *result in self.resultHistory){
+        NSLog(@"%d: result: %@", [self.resultHistory count] ,result);
     }
 }
 

@@ -19,7 +19,6 @@
 // Internal usage/storage of cards, just need a array of cards.
 @property (nonatomic, strong) NSMutableArray *cards; // of card
 
-@property (strong, nonatomic, readwrite) NSString *resultDescription;
 @property (nonatomic, strong)NSArray *lastChosenCards;
 @property (nonatomic, readwrite)NSInteger lastScore;
 @end
@@ -119,8 +118,6 @@ static const int COST_TO_CHOOSE=1;
 }
 
 - (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index{
-    
-    self.resultDescription = nil;
     
     Card *card = [self cardAtIndex:index];
     

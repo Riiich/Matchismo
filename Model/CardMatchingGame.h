@@ -27,7 +27,6 @@
 
 - (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index;
 @property (nonatomic)NSUInteger otherCardsCount;
-@property (strong, nonatomic, readonly)NSString *resultDescription;
 @property (nonatomic, readonly)NSArray *lastChosenCards;
 @property (nonatomic, readonly)NSInteger lastScore;
 
