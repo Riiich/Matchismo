@@ -6,39 +6,22 @@
 //  Copyright (c) 2014 Rich.Chang. All rights reserved.
 //
 
-#define NSLog if(0) NSLog
-
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
 
 @interface CardGameViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;   //HW-1
-@property (nonatomic) int flipCount;                        //HW-1
-//@property (strong, nonatomic) Deck *deck;                   //HW-1
 @property (strong, nonatomic) CardMatchingGame  *gameModel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchMode;
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
-
 @property (strong, nonatomic) NSMutableArray *resultHistory;
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @end
 
-@implementation CardGameViewController
 
-/*
-//--Begin of HW1
-// Lazy initialization
--(Deck *)deck{
-    if(!_deck){
-        _deck = [self createDeck];
-    }
-    return _deck;
-}
-//--ENF of HW1
-*/
+@implementation CardGameViewController
 
 // Lazy initialization
 -(CardMatchingGame *) gameModel {
@@ -60,14 +43,6 @@
 
 -(Deck *)createDeck{
     return [[PlayingCardDeck alloc]init];
-}
-
-// Setter
-- (void)setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"FlipCount: %d", self.flipCount];
-    NSLog(@"flipcount changed to: %d", self.flipCount);
 }
 
 // [Value Change]
@@ -93,10 +68,6 @@
 }
 
 - (IBAction)touchResetButton:(UIButton *)sender {
-    /*if (_gameModel){
-        _gameModel = nil;
-        _gameModel = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
-    }*/
     self.gameModel = nil;
     [self updateUI];
     
@@ -111,26 +82,8 @@
     
     // To know what's index in Card array of touched button.
     int chosenBtnIndex = [self.cardButtons indexOfObject:sender];   // or say cardIndex
-    //[self.gameModel chooseCardAtIndex:chosenBtnIndex];
-    [self.gameModel chooseCardAtIndexWithMatchMethod:chosenBtnIndex];
+    [self.gameModel chooseCardAtIndex:chosenBtnIndex];
     [self updateUI];    // To sync the model with UI, which is what controller does.
-    
-    /*
-    //-- Begin of HW1
-    if ([sender.currentTitle length]){
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardback"] forState:UIControlStateNormal];
-        [sender setTitle:@"" forState:UIControlStateNormal];
-    }
-    else{
-        Card *card = [self.deck drawRandomCard];
-        if (card){
-            [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"] forState:UIControlStateNormal];
-            [sender setTitle:card.contents forState:UIControlStateNormal];
-        }
-    }
-    self.flipCount++;
-    //-- End of HW1
-    */
 }
 
 - (void)updateUI{
@@ -179,10 +132,6 @@
         }
         [self.resultHistory addObject:descriptor];
         [self.historySlider setMaximumValue:[self.resultHistory count]-1];
-    }
-    
-    for (NSString *result in self.resultHistory){
-        NSLog(@"%d: result: %@", [self.resultHistory count] ,result);
     }
 }
 
