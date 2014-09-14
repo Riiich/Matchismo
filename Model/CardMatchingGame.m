@@ -43,8 +43,7 @@
         for (int i=0;i<count;i++){
             Card * card = [deck drawRandomCard];
             if (card){
-                self.cards[i] = card;
-                //[self.cards addObject:card];    // or doing this way
+                self.cards[i] = card;       //[self.cards addObject:card];
             }else{ // run out of cards
                 self = nil;
                 break;
@@ -67,8 +66,7 @@
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index{
-    // To prevent if <index> greater then <count>
-    return (index < [self.cards count]) ? self.cards[index] : nil;
+    return (index < [self.cards count]) ? self.cards[index] : nil;      // To prevent if <index> greater then <count>
 }
 
 static const int MISMATCH_PENALTY=2;
@@ -78,22 +76,17 @@ static const int COST_TO_CHOOSE=1;
 // Here is where "matching: happen !!! Heart of this App
 - (void)chooseCardAtIndex:(NSInteger)index{
     
+#ifdef  MATCH_ONE
     Card *card = [self cardAtIndex:index];
-    
-    //--- Doing the MATCHING ---//
-    
     if (!card.isMatched){
-        
         if (card.isChosen){
             // if the card is already chosen, toggle chosen status of the card
             // flip OFF the card
             card.chosen = NO;
         }else{
             // So looking for OTHER that are unmatched and already chosen.
-            
             for (Card *otherCard in self.cards){
                 if (otherCard.isChosen && !otherCard.isMatched){
-                    
                     int matchScore = [card matchCards:@[otherCard]];    // Make array on the fly by using @[]
                     if (matchScore){
                         self.score += matchScore * MATCH_BONUS;
@@ -115,10 +108,7 @@ static const int COST_TO_CHOOSE=1;
     else{
         // Do nothing if this card is already matched with the other one.
     }
-}
-
-- (void)chooseCardAtIndexWithMatchMethod:(NSInteger)index{
-    
+#else
     Card *card = [self cardAtIndex:index];
     
     if (!card.isMatched){
@@ -168,7 +158,9 @@ static const int COST_TO_CHOOSE=1;
         }
     }
     else{
+        // Do nothing if this card is already matched with the other one.
     }
+#endif
 }
 
 @end
