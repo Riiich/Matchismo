@@ -191,7 +191,7 @@
 }
 
 -(UIImage *)backgroundImageForCard:(Card *)card{
-    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+    return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback_suits"];
 }
 
 @end
