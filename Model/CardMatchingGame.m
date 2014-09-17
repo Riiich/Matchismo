@@ -57,12 +57,13 @@
     return nil;
 }
 
-// Lazy Initialization
-- (NSUInteger)otherCardsCount{
-    if (_otherCardsCount < 1){
-        _otherCardsCount = 1;
+// (getter) Lazy Initialization
+- (NSUInteger)matchingCardsCount{
+    Card *card = [self.cards firstObject];
+    if (_matchingCardsCount < card.numberOfMatchingCard){
+        _matchingCardsCount = card.numberOfMatchingCard;
     }
-    return _otherCardsCount;
+    return _matchingCardsCount;
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index{
@@ -125,7 +126,7 @@ static const int COST_TO_CHOOSE=1;
                 if (otherCard.isChosen && !otherCard.isMatched){
                     [otherCards addObject:(otherCard)];
                     
-                    if ([otherCards count] == self.otherCardsCount){                    // matching until choose N cards.
+                    if ([otherCards count] == self.matchingCardsCount-1){                    // matching until choose N cards.
                         
                         self.lastChosenCards = [otherCards arrayByAddingObject:card];   // otherCards and (self)card.
                         

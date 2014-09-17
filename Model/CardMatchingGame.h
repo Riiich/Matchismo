@@ -25,7 +25,8 @@
 // readonly: no PUBLIC setter, make it READONLY publicly.
 @property (nonatomic, readonly)NSInteger score;
 
-@property (nonatomic)NSUInteger otherCardsCount;
+//@property (nonatomic)NSUInteger otherCardsCount;
+@property (nonatomic) NSUInteger matchingCardsCount;
 @property (nonatomic, readonly)NSArray *lastChosenCards;
 @property (nonatomic, readonly)NSInteger lastScore;
 

@@ -48,10 +48,10 @@
 // [Value Change]
 - (IBAction)touchSegmentedControl:(id)sender {
     if (self.matchMode.selectedSegmentIndex == 0){
-        self.gameModel.otherCardsCount = 1;
+        self.gameModel.matchingCardsCount = 2;
     }
     else if (self.matchMode.selectedSegmentIndex == 1){
-        self.gameModel.otherCardsCount = 2;
+        self.gameModel.matchingCardsCount = 3;
     }
 }
 
