@@ -33,6 +33,14 @@
     return score;
 }
 
+// re-write the getter. For matching card, at least 2 cards to be matched.
+- (NSUInteger) numberOfMatchingCard{
+    if (!_numberOfMatchingCard){
+        _numberOfMatchingCard = 2;
+    }
+    return _numberOfMatchingCard;
+}
+
 /*
 @synthesize contents = _contents;
 - (NSString*) contents{
