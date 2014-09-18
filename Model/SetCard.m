@@ -36,7 +36,7 @@ static const unsigned int NUMBER_OF_A_SET = 3;
     return _symbol ? _symbol : @"";
 }
 - (void)setSymbol:(NSString *)symbol{
-    if ([[SetCard validSymbols] containsObject:_symbol]){
+    if ([[SetCard validSymbols] containsObject:symbol]){
         _symbol = symbol;
     }
 }
