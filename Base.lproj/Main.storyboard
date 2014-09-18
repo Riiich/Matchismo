@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qz9-dV-Qh8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Playing Card Game View Controller-->
+        <!--Playing Card Game View Controller - Item-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
@@ -399,6 +399,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Qy7-75-kyE"/>
                     <connections>
                         <outlet property="historySlider" destination="aKG-4e-KcQ" id="XEE-sx-fxd"/>
                         <outlet property="matchMode" destination="0uu-tb-hSx" id="MeO-im-de5"/>
@@ -438,8 +439,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="625" y="67"/>
         </scene>
-        <!--Set Card Game View Controller-->
+        <!--Set Card Game View Controller - Item-->
         <scene sceneID="qX3-k8-3cL">
             <objects>
                 <viewController id="U0o-SM-A1t" customClass="SetCardGameViewController" sceneMemberID="viewController">
@@ -834,6 +836,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Tl9-lp-0AI"/>
                     <connections>
                         <outlet property="historySlider" destination="KEO-fT-bvD" id="uKx-9u-gAv"/>
                         <outlet property="matchMode" destination="HIh-MK-Ofl" id="gFV-H1-DLC"/>
@@ -873,7 +876,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2w-05-xhG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="-641"/>
+            <point key="canvasLocation" x="625" y="-599"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="H0O-c0-XLx">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qz9-dV-Qh8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="DaR-Di-6TA">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="60G-qj-q3X"/>
+                        <segue destination="U0o-SM-A1t" kind="relationship" relationship="viewControllers" id="pPk-pE-LAq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pwC-GT-yf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="-255"/>
         </scene>
     </scenes>
     <resources>
