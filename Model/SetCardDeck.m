@@ -25,6 +25,8 @@
                         card.symbol = symbol;
                         card.color = color;
                         card.shading = shading;
+                        
+                        [self addCard:card atTop:YES];
                     }
                 }
             }
