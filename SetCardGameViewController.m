@@ -15,8 +15,15 @@
 
 @implementation SetCardGameViewController
 
--(Deck *)createDeck{
+- (Deck *)createDeck{
     return [[SetCardDeck alloc]init];
 }
+
+- (NSMutableAttributedString *)titleForCard:(Card *)card{
+    NSMutableAttributedString *content = [[NSMutableAttributedString alloc] initWithString:card.isChosen?card.contents:@"?"];
+    
+    return content;
+}
+
 
 @end
