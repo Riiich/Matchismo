@@ -10,4 +10,6 @@
 
 @interface PlayingCardGameViewController : CardGameViewController
 
+- (NSDictionary *)suitColors;
+
 @end
