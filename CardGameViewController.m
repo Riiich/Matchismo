@@ -24,7 +24,7 @@
 @implementation CardGameViewController
 
 // Lazy initialization
--(CardMatchingGame *) gameModel {
+- (CardMatchingGame *) gameModel {
     if (!_gameModel){
         _gameModel = [[CardMatchingGame alloc]initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
         
@@ -41,7 +41,7 @@
     return _resultHistory;
 }
 
--(Deck *)createDeck{
+- (Deck *)createDeck{
     return [[PlayingCardDeck alloc]init];
 }
 
@@ -94,7 +94,7 @@
         Card *card = [self.gameModel cardAtIndex:cardIndex];
 
         // Now we have card and button, so we can make sure if button reflects the card.
-        [cardButton setTitle:[self titileForCard:card] forState:UIControlStateNormal];
+        [cardButton setAttributedTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
@@ -127,19 +127,20 @@
         self.resultLabel.alpha = 1.0;
         
         // To handle history msg array in slider
-        if ([self.resultHistory count] > 20){
-            //[self.resultHistory removeAllObjects];
+        if ([self.resultHistory count] > 10){
+            [self.resultHistory removeAllObjects];
         }
         [self.resultHistory addObject:descriptor];
         [self.historySlider setMaximumValue:[self.resultHistory count]-1];
     }
 }
 
--(NSString *)titileForCard:(Card *)card{
-    return card.isChosen ? card.contents : @"";
+- (NSMutableAttributedString *)titleForCard:(Card *)card{
+    NSMutableAttributedString *content = [[NSMutableAttributedString alloc] initWithString:card.isChosen?card.contents:@""];
+    return content;
 }
 
--(UIImage *)backgroundImageForCard:(Card *)card{
+- (UIImage *)backgroundImageForCard:(Card *)card{
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback_suits"];
 }
 

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 @interface CardGameViewController : UIViewController
+
+- (NSMutableAttributedString *)titleForCard:(Card *)card;
+- (UIImage *)backgroundImageForCard:(Card *)card;
 
 @end
