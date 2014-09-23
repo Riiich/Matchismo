@@ -25,5 +25,8 @@
     return content;
 }
 
+- (UIImage *)backgroundImageForCard:(Card *)card{
+    return [UIImage imageNamed:card.isChosen ? @"setCardSelected" : @"setCard"];
+}
 
 @end
