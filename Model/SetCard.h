@@ -15,10 +15,6 @@
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *shading;
 
-@property (strong, nonatomic) NSDictionary *symbols;
-@property (strong, nonatomic) NSDictionary *colors;
-@property (strong, nonatomic) NSDictionary *shadings;
-
 + (NSUInteger)maxNumber;
 + (NSArray *)validSymbols;
 + (NSArray *)validColors;

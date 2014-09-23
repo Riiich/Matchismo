@@ -84,28 +84,6 @@ static const unsigned int NUMBER_OF_A_SET = 3;
     return @[@"solid", @"stripe", @"open"];
 }
 
-- (NSDictionary *)colors{
-    _colors = @{@"red" : [UIColor redColor],
-                @"green" : [UIColor greenColor],
-                @"purple" : [UIColor purpleColor]};
-    return _colors;
-}
-
-- (NSDictionary *)symbols{
-    _symbols =  @{@"diamond" : @"▲",
-                  @"squiggle" : @"●",
-                  @"oval" : @"■"};
-    return _symbols;
-}
-
-- (NSDictionary *)shadings{
-    _shadings = @{@"solid" : @"",
-                  @"stripe" : @"",
-                  @"open" : @""};
-    ;
-    return _shadings;
-}
-
 - (int)matchCards:(NSArray *)otherCards{
     int score = 0;
     
