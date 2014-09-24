@@ -73,7 +73,7 @@ static const unsigned int NUMBER_OF_A_SET = 3;
 }
 
 + (NSArray *)validSymbols{
-    return @[@"▲", @"●", @"■"];
+    return @[@"diamond", @"squiggle", @"oval"];
 }
 
 + (NSArray *)validColors{
