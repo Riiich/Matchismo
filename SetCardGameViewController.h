@@ -10,4 +10,8 @@
 
 @interface SetCardGameViewController : CardGameViewController
 
+@property (strong, nonatomic) NSDictionary *symbols;
+@property (strong, nonatomic) NSDictionary *colors;
+@property (strong, nonatomic) NSDictionary *shadings;
+
 @end
