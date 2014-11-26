@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Playing Card Game View Controller - Item-->
+        <!--Playing Card Game View Controller - Playing Card-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
@@ -161,14 +161,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aou-7W-O0L">
-                                <rect key="frame" x="20" y="498" width="136" height="21"/>
+                                <rect key="frame" x="20" y="482" width="136" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQE-6Y-Svh">
-                                <rect key="frame" x="176" y="513" width="124" height="30"/>
+                                <rect key="frame" x="176" y="478" width="124" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -185,7 +185,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0uu-tb-hSx">
-                                <rect key="frame" x="20" y="386" width="280" height="29"/>
+                                <rect key="frame" x="20" y="374" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="2-Card-match mode"/>
@@ -197,7 +197,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6av-LU-Mou">
-                                <rect key="frame" x="20" y="431" width="280" height="21"/>
+                                <rect key="frame" x="20" y="413" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -420,7 +420,7 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="aKG-4e-KcQ">
-                                <rect key="frame" x="18" y="460" width="284" height="31"/>
+                                <rect key="frame" x="18" y="442" width="284" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="changeSlider:" destination="vXZ-lx-hvc" eventType="valueChanged" id="nq6-50-yyq"/>
@@ -429,7 +429,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Qy7-75-kyE"/>
+                    <tabBarItem key="tabBarItem" title="Playing Card" id="Qy7-75-kyE"/>
                     <connections>
                         <outlet property="historySlider" destination="aKG-4e-KcQ" id="XEE-sx-fxd"/>
                         <outlet property="matchMode" destination="0uu-tb-hSx" id="MeO-im-de5"/>
@@ -471,7 +471,7 @@
             </objects>
             <point key="canvasLocation" x="625" y="67"/>
         </scene>
-        <!--Set Card Game View Controller - Item-->
+        <!--Set Card Game View Controller - Set Card-->
         <scene sceneID="qX3-k8-3cL">
             <objects>
                 <viewController id="U0o-SM-A1t" customClass="SetCardGameViewController" sceneMemberID="viewController">
@@ -896,7 +896,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Tl9-lp-0AI"/>
+                    <tabBarItem key="tabBarItem" title="Set Card" id="Tl9-lp-0AI"/>
                     <connections>
                         <outlet property="historySlider" destination="KEO-fT-bvD" id="uKx-9u-gAv"/>
                         <outlet property="matchMode" destination="HIh-MK-Ofl" id="gFV-H1-DLC"/>
